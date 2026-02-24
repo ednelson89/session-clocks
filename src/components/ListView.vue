@@ -1,6 +1,11 @@
 <template>
     <v-col :cols="mobile ? '12' : '4'">
-        <h3>Room {{ roomNumber }}</h3>
+        <h3>Room {{ roomNumber }} |
+            <v-btn icon v-if="muteM == true" @click="toggleMute">
+                <v-icon>mdi-volume-off</v-icon></v-btn>
+            <v-btn icon v-if="muteM == false" @click="toggleMute">
+                <v-icon>mdi-volume-high</v-icon></v-btn>
+        </h3>
         <div class="drag-container">
             <div v-for="(item, index) in roomNumber == 1 ? store.room1List : roomNumber == 2 ? store.room2List : store.room3List"
                 :key="item.id" class="drag-item">
@@ -10,7 +15,7 @@
     </v-col>
 </template>
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useGeneralStore } from '@/stores/general';
 import { useDisplay } from 'vuetify'
 
@@ -21,6 +26,12 @@ import hornSound from '@/assets/horn.mp3'
 const chime = new Audio(chimeSound)
 const beep = new Audio(beepSound)
 const horn = new Audio(hornSound)
+
+const muteM = ref(false)
+
+function toggleMute() {
+    muteM.value = !muteM.value
+}
 
 const { mobile } = useDisplay()
 
@@ -50,17 +61,23 @@ function time() {
 }
 
 const deleteItem = () => {
-    if (store.room1List[0] && store.room1List[0].expire <= currSecs.value) {
+    if (props.roomNumber == 1 && store.room1List[0] && store.room1List[0].expire <= currSecs.value) {
         store.room1List.splice(0, 1)
-        if (!store.mute) { chime.play() }
+        if (!store.mute && muteM.value == false) {
+            chime.play()
+        }
     }
-    if (store.room2List[0] && store.room2List[0].expire <= currSecs.value) {
+    if (props.roomNumber == 2 && store.room2List[0] && store.room2List[0].expire <= currSecs.value) {
         store.room2List.splice(0, 1)
-        if (!store.mute) { beep.play() }
+        if (!store.mute && muteM.value == false) {
+            beep.play()
+        }
     }
-    if (store.room3List[0] && store.room3List[0].expire <= currSecs.value) {
+    if (props.roomNumber == 3 && store.room3List[0] && store.room3List[0].expire <= currSecs.value) {
         store.room3List.splice(0, 1)
-        if (!store.mute) { horn.play() }
+        if (!store.mute && muteM.value == false) {
+            horn.play()
+        }
     }
 
 }

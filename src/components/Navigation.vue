@@ -13,6 +13,10 @@
                 </v-btn>
             </template>
             <v-list>
+
+                <v-list-item>
+                    <v-btn href="https://session-planner.chimeracrosstraining.com/">Session Planner</v-btn>
+                </v-list-item>
                 <v-list-item>
                     <v-btn @click="store.mute = !store.mute">
                         {{ store.mute ? 'Un-Mute Rooms' : 'Mute Rooms' }}
@@ -25,6 +29,7 @@
         </v-menu>
 
         <template v-if="$vuetify.display.mdAndUp">
+            <v-btn href="https://session-planner.chimeracrosstraining.com/">Session Planner</v-btn>
             <v-btn @click="store.mute = !store.mute">
                 {{ store.mute ? 'Un-Mute Rooms' : 'Mute Rooms' }}
             </v-btn>
