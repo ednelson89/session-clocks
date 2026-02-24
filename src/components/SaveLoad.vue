@@ -15,27 +15,6 @@ import { useGeneralStore } from '@/stores/general';
 const store = useGeneralStore()
 const renderFileInput = ref(true)
 
-// Save
-const saveToFile = () => {
-    // console.info('Save File')
-    let tempDate = new Date()
-    let options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
-    let fileName = `SessionPlan - ${tempDate.toLocaleDateString('en-US', options)}`
-    fileName = fileName.replaceAll(',', ' -')
-    let temp = {
-        room1List: store.room1List,
-        room2List: store.room2List,
-        room3List: store.room3List,
-    }
-    let blob = new Blob([JSON.stringify(temp)], { type: 'application/json' })
-    saveAs(blob, fileName)
-}
-
 // Load
 const file = ref()
 const inData = ref()

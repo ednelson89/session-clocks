@@ -14,6 +14,11 @@
             </template>
             <v-list>
                 <v-list-item>
+                    <v-btn @click="store.mute = !store.mute">
+                        {{ store.mute ? 'Un-Mute Rooms' : 'Mute Rooms' }}
+                    </v-btn>
+                </v-list-item>
+                <v-list-item>
                     <SaveLoad></SaveLoad>
                 </v-list-item>
             </v-list>
@@ -21,7 +26,7 @@
 
         <template v-if="$vuetify.display.mdAndUp">
             <v-btn @click="store.mute = !store.mute">
-                {{store.mute ? 'Un-Mute Rooms' : 'Mute Rooms'}}
+                {{ store.mute ? 'Un-Mute Rooms' : 'Mute Rooms' }}
             </v-btn>
             <SaveLoad></SaveLoad>
         </template>
