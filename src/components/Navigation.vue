@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar :elevation="2" scroll-behavior="hide" scroll-threshold="308" color="#fff">
+    <v-app-bar :elevation="2" scroll-behavior="hide" scroll-threshold="308">
         <template v-slot:prepend>
             <img :src="logo" alt="Chimera Banner Symbol" class="banner_image" />
         </template>
@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 import SaveLoad from '@/components/SaveLoad.vue';
-import logo from '@/assets/ChimeraLogoTransparent.png'
+import logo from '@/assets/ChimeraLogo Icon SM.png'
 import { useGeneralStore } from '@/stores/general';
 
 const store = useGeneralStore()

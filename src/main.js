@@ -33,7 +33,7 @@ const vuetify = createVuetify({
     },
   },
    theme: {
-    defaultTheme: 'light', // 'system' | 'light' | 'dark'
+    defaultTheme: 'dark', // 'system' | 'light' | 'dark'
   },
 })
 

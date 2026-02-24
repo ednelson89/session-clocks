@@ -96,7 +96,8 @@ const deleteItem = () => {
 .drag-item {
     padding: 10px;
     margin: 5px 0;
-    background: #f0f0f0;
+    background: #2a2929;
+    border: solid 1px white;
     border-radius: 4px;
     cursor: move;
     transition: background 0.2s;
@@ -106,9 +107,7 @@ const deleteItem = () => {
     background: #e0e0e0;
 }
 
-.delIcon {
-    color: #151414 !important;
-}
+
 
 .material-symbols-outlined {
     font-variation-settings:
