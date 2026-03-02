@@ -15,7 +15,7 @@
     </v-col>
 </template>
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch } from 'vue';
 import { useGeneralStore } from '@/stores/general';
 import { useDisplay } from 'vuetify'
 
@@ -53,6 +53,7 @@ watch(
     }
 )
 
+// Calculate total time elapsed
 function time() {
     let temp1 = Number(store.rmin * 60)
     let temp2 = Number(store.rsec)
