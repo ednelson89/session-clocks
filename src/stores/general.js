@@ -12,6 +12,8 @@ export const useGeneralStore = defineStore('general', () => {
   const longTermList2 = ref()
   const longTermList3 = ref()
 
+  const resetComplete = ref()
+
   return {
     room1List,
     room2List,
@@ -22,5 +24,6 @@ export const useGeneralStore = defineStore('general', () => {
     longTermList1,
     longTermList2,
     longTermList3,
+    resetComplete
   }
 })

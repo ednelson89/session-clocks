@@ -41,14 +41,30 @@ function rolloverTime() {
         rmin.value = 0
     }
 
+
+
     // console.info('RM: ' + rm + ', RS: ' + rs)
-    // Play sounds at set times
-    if (rmin.value == 0 && rsec.value == 1) {
-        gong.play()
-        store.room1List = JSON.parse(JSON.stringify(store.longTermList1))
-        store.room2List = JSON.parse(JSON.stringify(store.longTermList2))
-        store.room3List = JSON.parse(JSON.stringify(store.longTermList3))
+    // Attempt to Reset Program every sec between 00:01 and 00:04
+    // This accounts for any missed cycles
+    if (rmin.value == 0 && rsec.value >= 1 && rsec.value <= 4) {
+        // Reset Program Only is resetComplete == false
+        if (store.resetComplete == false) {
+            store.room1List = JSON.parse(JSON.stringify(store.longTermList1))
+            store.room2List = JSON.parse(JSON.stringify(store.longTermList2))
+            store.room3List = JSON.parse(JSON.stringify(store.longTermList3))
+            store.resetComplete = true
+            gong.play()
+        }
     }
+
+    // Between 00:05 - 00:09
+    // This accounts for any missed cycles
+    if (rmin.value == 0 && rsec.value >= 5 && rsec.value <= 9) {
+        if (store.resetComplete == false) {
+            store.resetComplete = true
+        }
+    }
+
     if (rmin.value == 13 && rsec.value == 30) {
         drum.play()
     }
