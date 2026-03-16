@@ -12,7 +12,7 @@ export const useGeneralStore = defineStore('general', () => {
   const longTermList2 = ref()
   const longTermList3 = ref()
 
-  const resetComplete = ref()
+  const resetComplete = ref(false)
 
   return {
     room1List,

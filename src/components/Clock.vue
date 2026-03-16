@@ -53,7 +53,9 @@ function rolloverTime() {
             store.room2List = JSON.parse(JSON.stringify(store.longTermList2))
             store.room3List = JSON.parse(JSON.stringify(store.longTermList3))
             store.resetComplete = true
+            console.info('Reset Complete, Data Re-Assigned: ', store.resetComplete)
             gong.play()
+            resetComplete
         }
     }
 
@@ -62,6 +64,14 @@ function rolloverTime() {
     if (rmin.value == 0 && rsec.value >= 5 && rsec.value <= 9) {
         if (store.resetComplete == false) {
             store.resetComplete = true
+            console.info('Reset Complete, catch cycle: ', store.resetComplete)
+        }
+    }
+
+    if (rmin.value == 0 && rsec.value >= 20 && rsec.value <= 30) {
+        if (store.resetComplete == true) {
+            store.resetComplete = false
+            console.info('Reset Complete, Prep for Next Cycle: ', store.resetComplete)
         }
     }
 

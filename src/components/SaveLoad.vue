@@ -92,6 +92,8 @@ const importFile = async (event) => {
         renderFileInput.value = false
         await nextTick();
         renderFileInput.value = true
+
+        store.resetComplete = false
     }
 
 }
