@@ -1,7 +1,17 @@
 <template>
     <v-row justify="center">
-        <v-card bg-variant="primary" text-variant="white" header="Primary" class="text-center clock-frame">
-            <p class="clock">{{ rmin }}:{{ rsec }}</p>
+        <v-card bg-letiant="primary" text-letiant="white" header="Primary" class="text-center clock-frame">
+            <v-row justify="center" density="compact">
+                <v-col :cols="mobile ? 10 : 5.5" density="compact">
+                    <span class="clock">{{ rmin }}:{{ rsec }}</span>
+                </v-col>
+                <v-col v-if="store.showLiveClock" :cols="mobile ? 10 : 1" density="compact">
+                    <span class="clock"> | </span>
+                </v-col>
+                <v-col v-if="store.showLiveClock" :cols="mobile ? 10 : 5.5" density="compact">
+                    <span class="clock"> {{ lHour }}:{{ lMin }} </span>
+                </v-col>
+            </v-row>
         </v-card>
     </v-row>
 </template>
@@ -18,6 +28,32 @@ const drum = new Audio(drumSound)
 
 const { mobile } = useDisplay()
 const store = useGeneralStore()
+
+
+// Live Clock
+const lHour = ref()
+const lMin = ref()
+
+function calcLiveClock() {
+    let date = new Date();
+    let h = date.getHours(); // 0 - 23
+    let m = date.getMinutes(); // 0 - 59
+
+    if (h == 0) {
+        h = 12;
+    }
+
+    if (h > 12) {
+        h = h - 12;
+    }
+
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+
+    lHour.value = h
+    lMin.value = m
+}
+
 
 // Rollover clock
 let startDate = new Date()
@@ -89,6 +125,7 @@ function formatTime(i) {
 }
 
 setInterval(() => {
+    calcLiveClock()
     rolloverTime()
 }, 1000)
 
@@ -96,6 +133,8 @@ setInterval(() => {
 
 <style scoped>
 .clock-frame {
+    padding-top: 3%;
+    padding-bottom: 3%;
     width: 60vw;
 }
 

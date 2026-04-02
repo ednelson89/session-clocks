@@ -23,6 +23,11 @@
                     </v-btn>
                 </v-list-item>
                 <v-list-item>
+                    <v-btn @click="store.showLiveClock = !store.showLiveClock">
+                        {{ store.showLiveClock ? 'Hide Clock' : 'Show Clock' }}
+                    </v-btn>
+                </v-list-item>
+                <v-list-item>
                     <SaveLoad></SaveLoad>
                 </v-list-item>
             </v-list>
@@ -32,6 +37,9 @@
             <v-btn href="https://session-planner.chimeracrosstraining.com/">Session Planner</v-btn>
             <v-btn @click="store.mute = !store.mute">
                 {{ store.mute ? 'Un-Mute Rooms' : 'Mute Rooms' }}
+            </v-btn>
+            <v-btn @click="store.showLiveClock = !store.showLiveClock">
+                {{ store.showLiveClock ? 'Hide Clock' : 'Show Clock' }}
             </v-btn>
             <SaveLoad></SaveLoad>
         </template>

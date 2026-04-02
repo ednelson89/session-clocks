@@ -11,6 +11,7 @@ export const useGeneralStore = defineStore('general', () => {
   const longTermList1 = ref()
   const longTermList2 = ref()
   const longTermList3 = ref()
+  const showLiveClock = ref(true)
 
   const resetComplete = ref(false)
 
@@ -24,6 +25,7 @@ export const useGeneralStore = defineStore('general', () => {
     longTermList1,
     longTermList2,
     longTermList3,
-    resetComplete
+    resetComplete,
+    showLiveClock,
   }
 })

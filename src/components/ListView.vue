@@ -1,15 +1,24 @@
 <template>
     <v-col :cols="mobile ? '12' : '4'">
-        <h3>Room {{ roomNumber }} |
+        <h3> {{ roomName }} Room |
             <v-btn icon v-if="muteM == true" @click="toggleMute">
-                <v-icon>mdi-volume-off</v-icon></v-btn>
+                <v-icon>mdi-volume-off</v-icon>
+            </v-btn>
             <v-btn icon v-if="muteM == false" @click="toggleMute">
-                <v-icon>mdi-volume-high</v-icon></v-btn>
+                <v-icon>mdi-volume-high</v-icon>
+            </v-btn>
+            |
+            <v-btn icon v-if="showTime == true" @click="toggleTime">
+                <v-icon>mdi-clock-outline</v-icon>
+            </v-btn>
+            <v-btn icon v-if="showTime == false" @click="toggleTime">
+                <v-icon>mdi-clock-remove</v-icon>
+            </v-btn>
         </h3>
         <div class="drag-container">
             <div v-for="(item, index) in roomNumber == 1 ? store.room1List : roomNumber == 2 ? store.room2List : store.room3List"
                 :key="item.id" class="drag-item">
-                {{ index + 1 }}. {{ item.eName }} | x{{ item.eReps }} | {{ item.eDur }}sec
+                {{ index + 1 }}. {{ item.eName }} | x{{ item.eReps }} {{ showTime ? ' | ' + item.eDur + 'sec' : '' }}
             </div>
         </div>
     </v-col>
@@ -33,12 +42,20 @@ function toggleMute() {
     muteM.value = !muteM.value
 }
 
+
+const showTime = ref(false)
+
+function toggleTime() {
+    showTime.value = !showTime.value
+}
+
 const { mobile } = useDisplay()
 
 const store = useGeneralStore()
 
 const props = defineProps({
     roomNumber: Number,
+    roomName: String
 })
 
 // 900s = 15m

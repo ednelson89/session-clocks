@@ -7,17 +7,17 @@
       <v-container :fluid="true" class="content-container">
         <Clock></Clock>
         <v-row>
-          <ListView :roomNumber="1"></ListView>
-          <ListView :roomNumber="2"></ListView>
-          <ListView :roomNumber="3"></ListView>
+          <ListView :roomNumber="1" roomName="Strength"></ListView>
+          <ListView :roomNumber="2" roomName="Cardio"></ListView>
+          <ListView :roomNumber="3" roomName="Mobility"></ListView>
         </v-row>
       </v-container>
     </v-main>
-    <button @click="gong.play()">Times Up: Gong</button>
+    <!-- <button @click="gong.play()">Times Up: Gong</button>
     <button @click="drum.play()">90 Seconds: Drums</button>
     <button @click="chime.play()">Room 1: Chime</button>
     <button @click="beep.play()">Room 2: Beep</button>
-    <button @click="horn.play()">Room 3: Horn</button>
+    <button @click="horn.play()">Room 3: Horn</button> -->
   </v-app>
 </template>
 
