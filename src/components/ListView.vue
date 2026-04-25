@@ -18,7 +18,7 @@
         <div class="drag-container">
             <div v-for="(item, index) in roomNumber == 1 ? store.room1List : roomNumber == 2 ? store.room2List : store.room3List"
                 :key="item.id" class="drag-item">
-                {{ index + 1 }}. {{ item.eName }} | x{{ item.eReps }} {{ showTime ? ' | ' + item.eDur + 'sec' : '' }}
+                {{ item.eName }} | x{{ item.eReps }} {{ showTime ? ' | ' + item.eDur + 'sec' : '' }}
             </div>
         </div>
     </v-col>
